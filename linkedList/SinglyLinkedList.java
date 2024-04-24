@@ -1,7 +1,5 @@
 package linkedList;
 
-import javax.swing.event.ListSelectionEvent;
-
 public class SinglyLinkedList {
 
     private ListNode head;
@@ -237,16 +235,115 @@ public class SinglyLinkedList {
         return head;
     }
 
+    //to check if the linkedlist contains a loop
+    public boolean containsLoop(){  
+        if(head == null){
+            return false;
+        }
+
+        ListNode fastPointer = head;
+        ListNode slowPointer = head;
+
+        while (fastPointer != null && fastPointer.next != null) {
+
+            fastPointer = fastPointer.next.next;
+            slowPointer = slowPointer.next;
+
+            if (fastPointer == slowPointer) {
+                return true;                
+            }
+        }
+        return false;
+    } 
+
+    //created looped linkedlist
+    public void LoopInLinkedList() {
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+  
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = third;
+    }
+
+    public ListNode getStartingNode(ListNode slowPointer){
+        ListNode temp = head;
+        while(temp != slowPointer){
+            temp = temp.next;
+            slowPointer = slowPointer.next;
+        }
+        return temp;
+    }
+    
+    //floyd's cycle detection algo and return starting node of a loop
+    public ListNode startNodeOfLoop(){  
+        if(head.next == null){
+            return head;
+        }
+
+        ListNode fastPointer = head;
+        ListNode slowPointer = head;
+
+        while (fastPointer != null && fastPointer.next != null) {
+
+            fastPointer = fastPointer.next.next;
+            slowPointer = slowPointer.next;
+
+            if (fastPointer == slowPointer) {
+                return  getStartingNode(slowPointer);               
+            }
+        }
+        return null;
+    } 
+
+    //remove loop from the list
+    public void removeLoopFromLinkedList(){  
+        if(head.next == null){
+            return;
+        }
+
+        ListNode fastPointer = head;
+        ListNode slowPointer = head;
+
+        while (fastPointer != null && fastPointer.next != null) {
+
+            fastPointer = fastPointer.next.next;
+            slowPointer = slowPointer.next;
+
+            if (fastPointer == slowPointer) {
+                removeLoop(slowPointer);  
+                return;          
+            }
+        }
+    } 
+    
+    public void removeLoop(ListNode slowPointer){
+        ListNode temp = head;
+        while(temp.next != slowPointer.next){
+            temp = temp.next;
+            slowPointer = slowPointer.next;
+        }
+        slowPointer.next = null;
+    }
+
 
     public static void main(String[] args) {
         SinglyLinkedList sl = new SinglyLinkedList();
-        sl.head = new ListNode(1);
-        ListNode second = new ListNode(2);
-        ListNode third = new ListNode(4);
-        ListNode forth = new ListNode(5);
-        sl.head.next = second;
-        second.next = third;
-        third.next = forth;
+        // sl.head = new ListNode(1);
+        // ListNode second = new ListNode(2);
+        // ListNode third = new ListNode(4);
+        // ListNode forth = new ListNode(5);
+        // sl.head.next = second;
+        // second.next = third;
+        // third.next = forth;
         //sl.insertFirst(10);
         // sl.insertEnd(25);
         //sl.insertAtPosition(5,25);
@@ -265,7 +362,8 @@ public class SinglyLinkedList {
         //sl.displayList();
         // ListNode back = sl.findFfromBackward(2);
         // System.out.println(back.data);
-        sl.displayList();
+
+        // sl.displayList();
         // ListNode reversed = sl.reverseList(sl.head);
         // sl.displayList(reversed);
         //sl.findElement(2);
@@ -276,6 +374,12 @@ public class SinglyLinkedList {
         //ListNode n = sl.insertNodeSortedLL(3);
         //sl.displayList(n);
         // sl.displayList();
+        // sl.LoopInLinkedList();
+        // System.out.println(sl.containsLoop());
+        // sl.removeLoopFromLinkedList();
+        // System.out.println(sl.containsLoop());
+        // sl.displayList();
+
     }
 
 }
