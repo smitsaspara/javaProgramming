@@ -1,5 +1,7 @@
 package linkedList;
 
+import java.util.List;
+
 public class SinglyLinkedList {
 
     private ListNode head;
@@ -325,6 +327,7 @@ public class SinglyLinkedList {
         }
     } 
     
+    //remove loop from the linkedlist
     public void removeLoop(ListNode slowPointer){
         ListNode temp = head;
         while(temp.next != slowPointer.next){
@@ -334,9 +337,35 @@ public class SinglyLinkedList {
         slowPointer.next = null;
     }
 
+    //merge two sorted linkedlist
+    public static ListNode mergeSoretdLL(ListNode a, ListNode b){
+
+        ListNode start = new ListNode(0);
+        ListNode tail = start;
+
+        while(a != null && b != null ){
+            if(a.data <= b.data){
+                tail.next = a;
+                a = a.next;
+            }
+            else{
+                tail.next = b;
+                b = b.next;
+            }
+            tail = tail.next;
+        }
+        if(a == null){
+            tail.next = b;
+        }
+        else{
+            tail.next = a;
+        }
+
+        return start.next;
+    }
 
     public static void main(String[] args) {
-        SinglyLinkedList sl = new SinglyLinkedList();
+        //SinglyLinkedList sl = new SinglyLinkedList();
         // sl.head = new ListNode(1);
         // ListNode second = new ListNode(2);
         // ListNode third = new ListNode(4);
@@ -380,6 +409,27 @@ public class SinglyLinkedList {
         // System.out.println(sl.containsLoop());
         // sl.displayList();
 
+        // SinglyLinkedList sll1 = new SinglyLinkedList();
+        // sll1.insertEnd(1);
+        // sll1.insertEnd(4);
+        // sll1.insertEnd(8);
+
+        // SinglyLinkedList sll2 = new SinglyLinkedList();
+        // sll2.insertEnd(3);
+        // sll2.insertEnd(5);
+        // sll2.insertEnd(8);
+        // sll2.insertEnd(9);
+        // sll2.insertEnd(14);
+        // sll2.insertEnd(18);
+
+        // sll1.displayList();
+        // sll2.displayList();
+        
+        // SinglyLinkedList mergedLL = new SinglyLinkedList();
+
+        // mergedLL.head = mergeSoretdLL(sll1.head, sll2.head);
+
+        // mergedLL.displayList();
     }
 
 }
