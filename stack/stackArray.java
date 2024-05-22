@@ -79,6 +79,33 @@ public class stackArray {
         return result;
     }
 
+    
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<>();
+        char[] chArray = s.toCharArray();
+
+        for(char c: chArray){
+            if(c == '(' || c == '{' || c == '[' ){
+                st.push(c);
+            }
+            else{
+                if(st.isEmpty()){
+                    return false;
+                }
+                else{
+                    char top = st.peek();
+                    if(c == ')' && top == '(' || c == '}' && top == '{' || c == ']' && top == '[' ){
+                        st.pop();
+                    }else{
+                        return false;
+                    }
+                }
+            }
+        } 
+        return st.isEmpty();
+    }
+
+
     public static void main(String[] args) {
         stackArray stack = new stackArray(3);
         stack.push(10);
