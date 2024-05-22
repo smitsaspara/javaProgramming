@@ -1,0 +1,17 @@
+# Ignore compiled Java class files
+*.class
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+# Ignore directory for package files
+target/
+bin/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
