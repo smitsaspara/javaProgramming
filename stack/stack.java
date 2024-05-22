@@ -1,7 +1,6 @@
 package stack;
 
 import java.util.EmptyStackException;
-import java.util.Stack;
 
 public class stack {
 
@@ -58,33 +57,6 @@ public class stack {
         return top.data;
     }
     
-    public int[] nextGreaterElementArray(int[] arr){
-
-        int[] result = new int[arr.length];
-
-        Stack<Integer> st = new Stack<>();
-
-        for(int i = arr.length - 1; i>=0; i--){
-
-            if (!st.isEmpty()) {
-                while (!st.isEmpty() && st.peek() <= arr[i]) {
-                    st.pop();                    
-                }
-            }
-
-            if(st.isEmpty()){
-                result[i] = -1;
-            }
-            else{
-                result[i] = st.peek();
-            }
-
-            st.push(arr[i]);
-        }
-        return result;
-    }
-
-
     public static void main(String[] args) {
         stack st = new stack();
         st.push(1);
@@ -98,7 +70,6 @@ public class stack {
         st.pop();
 
         System.out.println(st.peek());
-
     }
     
 }

@@ -91,6 +91,16 @@ public class stackArray {
         stack.pop();
         System.out.println(stack.peek());
         stack.pop();
-        stack.pop();
+
+        for (int i = 0; i < stack.arr.length; i++) {
+            System.out.println("-->" + stack.arr[i]);            
+        }
+
+        int[] result =  stack.nextGreaterElementArray(stack.arr);
+
+        for (int i = 0; i < result.length; i++) {
+            System.out.println("-->" + result[i]);            
+        }
+
    }
 }
