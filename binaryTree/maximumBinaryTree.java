@@ -1,5 +1,8 @@
 package binaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class maximumBinaryTree {
 
     private TreeNode root;
@@ -32,15 +35,16 @@ public class maximumBinaryTree {
         third.right = seventh;
     }
 
-    public int findMax(TreeNode root){
+    //recursive
+    public int findMaxR(TreeNode root){
         
         if (root == null) { 
             return Integer.MIN_VALUE;
         }
 
         int result = root.data;
-        int left = findMax(root.left);
-        int right = findMax(root.right);
+        int left = findMaxR(root.left);
+        int right = findMaxR(root.right);
 
         if (left > result) {
             result = left;
@@ -51,10 +55,48 @@ public class maximumBinaryTree {
         }
         return result;
     }
+
+
+    //iterative
+
+    public int findMaxI(TreeNode root){
+
+        if (root == null){
+            return Integer.MIN_VALUE;
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        Queue<TreeNode> qu = new LinkedList<>();
+
+        qu.offer(root);
+
+        while (!qu.isEmpty()) {
+
+            TreeNode current = qu.poll();
+
+            if (current.data > max){
+                max = current.data;
+            }
+
+            if (current.left != null){
+                qu.offer(current.left);
+            }
+                
+            if (current.right != null){
+                qu.offer(current.right);
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         maximumBinaryTree mb = new maximumBinaryTree();
         mb.createBinaryTree();
-        int result = mb.findMax(mb.root);
+        int result = mb.findMaxR(mb.root);
         System.out.println(result);
+
+        int out = mb.findMaxR(mb.root);
+        System.out.println(out);
     }
 }
