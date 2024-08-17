@@ -89,6 +89,23 @@ public class binarySearchTree {
         inOrder(root.right);
     }
 
+    //recursive search
+    public TreeNode searchR(int key) {
+        return searchR(root, key);
+    }
+
+    public TreeNode searchR(TreeNode root, int key) {
+        if (root == null || root.data == key) { // base case 
+           return root;
+        }
+  
+        if (key < root.data) {
+           return searchR(root.left, key);
+        } else {
+           return searchR(root.right, key);
+        }
+     }
+
     public static void main(String[] args) {
         binarySearchTree bst = new binarySearchTree();
         bst.insertI(6);
@@ -98,6 +115,14 @@ public class binarySearchTree {
         bst.insertI(10);
 
         bst.inOrder();
+
+        System.out.println();
+
+        if(null != bst.searchR(9)){
+            System.out.println("value found");
+        }else{
+            System.out.println("value not found");
+        }
 
     }
 
