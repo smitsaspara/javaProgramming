@@ -104,7 +104,26 @@ public class binarySearchTree {
         } else {
            return searchR(root.right, key);
         }
-     }
+    }
+
+    //Iterative way
+    public TreeNode searchI(int key) {
+        return searchI(root, key);
+    }
+
+    public TreeNode searchI(TreeNode root, int key) {
+        TreeNode current = root;
+
+        while (current != null && current.data != key) {
+            if (key < current.data) {
+                current = current.left;  // Move to the left subtree
+            } else {
+                current = current.right; // Move to the right subtree
+            }
+        }
+
+        return current; // Return the found node, or null if not found
+    }
 
     public static void main(String[] args) {
         binarySearchTree bst = new binarySearchTree();
@@ -118,7 +137,7 @@ public class binarySearchTree {
 
         System.out.println();
 
-        if(null != bst.searchR(9)){
+        if(null != bst.searchI(10)){
             System.out.println("value found");
         }else{
             System.out.println("value not found");
