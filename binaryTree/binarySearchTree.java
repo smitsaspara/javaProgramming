@@ -125,6 +125,28 @@ public class binarySearchTree {
         return current; // Return the found node, or null if not found
     }
 
+    // valid BST
+    public boolean isValidBST() {
+        return isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    // Helper function to validate the BST by checking the boundaries
+    private boolean isValidBST(TreeNode node, int min, int max) {
+        if (node == null) {
+            return true; // An empty tree is a valid BST
+        }
+
+        // Check if the current node's value violates the min/max constraint
+        if (node.data <= min || node.data >= max) {
+            return false;
+        }
+
+        // Recursively check the left subtree with updated max constraint
+        // and the right subtree with updated min constraint
+        return isValidBST(node.left, min, node.data) && 
+               isValidBST(node.right, node.data, max);
+    }
+
     public static void main(String[] args) {
         binarySearchTree bst = new binarySearchTree();
         bst.insertI(6);
@@ -142,6 +164,12 @@ public class binarySearchTree {
         }else{
             System.out.println("value not found");
         }
+
+        if(bst.isValidBST()){
+            System.out.println("Valid bst");
+        }else{
+            System.out.println("Not valid bst");
+        };
 
     }
 
