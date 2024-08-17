@@ -13,25 +13,66 @@ public class binarySearchTree {
             this.data = data;
         }
     }
-
-    public void insert(int value){
-        root = insert(root, value);
+ 
+    //recursive insert
+    public void insertR(int value){
+        root = insertR(root, value);
     }
 
     //recursive insert
-    public TreeNode insert(TreeNode root, int value){
+    public TreeNode insertR(TreeNode root, int value){
         if(root == null ){
             root = new TreeNode(value);
             return root; 
         }
 
         if(value < root.data){
-            root.left = insert(root.left, value);
+            root.left = insertR(root.left, value);
         }else{
-            root.right = insert(root.right, value);
+            root.right = insertR(root.right, value);
         }
         return root;
     }
+
+
+    //iterative insert
+    public void insertI(int value){
+        root = insertI(root, value);
+    }
+
+    public TreeNode insertI(TreeNode root, int value){
+
+        if(root == null ){
+            root = new TreeNode(value);
+            return root; 
+        }
+
+        TreeNode current = root;
+        TreeNode parent = null;
+
+        while (true) {
+            parent = current;
+            if(value < parent.data){
+                current = current.left;
+                if(current == null){
+                    parent.left = new TreeNode(value);
+                    break;
+                }
+            }
+            else if(value > parent.data){
+                current = current.right;
+                if(current == null){
+                    parent.right = new TreeNode(value);
+                    break;
+                }
+            }
+            else{
+                break;
+            }
+        }
+        return root;
+    }
+
 
     //inorder
     public void inOrder(){
@@ -50,15 +91,14 @@ public class binarySearchTree {
 
     public static void main(String[] args) {
         binarySearchTree bst = new binarySearchTree();
-        bst.insert(6);
-        bst.insert(2);
-        bst.insert(8);
-        bst.insert(0);
-        bst.insert(10);
+        bst.insertI(6);
+        bst.insertI(2);
+        bst.insertI(8);
+        bst.insertI(0);
+        bst.insertI(10);
 
         bst.inOrder();
 
     }
 
-    
 }
