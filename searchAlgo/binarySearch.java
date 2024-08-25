@@ -20,8 +20,6 @@ public class binarySearch {
             if(arr[mid] > value){
                 end = mid + 1;
             }
-
-
         }
 
         return -1;
@@ -29,7 +27,7 @@ public class binarySearch {
 
     public static void main(String[] args) {
         binarySearch bs  = new binarySearch();
-        int[] arr = {1,3,5,7,10,2,4,6,8,0};
+        int[] arr = {1,2,3,4,5,6,7,8,9,10};
         
         System.out.println(bs.search(arr, 10));
     }
