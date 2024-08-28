@@ -22,9 +22,9 @@ public class stringReverse {
 
     public static void main(String[] args) {
         
-        stringReverse sr = new stringReverse();
+        //stringReverse sr = new stringReverse();
 
-        String result = sr.reverseSTR("smit");
+        String result = reverseSTR("smit");
 
         System.out.println((String)result);
         

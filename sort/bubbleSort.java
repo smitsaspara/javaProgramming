@@ -4,7 +4,6 @@ public class bubbleSort {
 
 
     public void sort(int[] arr){
-        int n = arr.length;
 
         boolean isSwapped;
 
