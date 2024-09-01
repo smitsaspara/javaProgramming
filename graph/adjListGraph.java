@@ -82,6 +82,26 @@ public class adjListGraph {
         }
     }
 
+    //dfs recursive approach
+    public void dfs(){
+        boolean[] isVisited = new boolean[V];
+        for (int v = 0; v < V; v++) {
+            if (!isVisited[v]) {
+                dfs(v, isVisited);
+            }
+        }
+    }
+
+    private void dfs(int v, boolean[] visited) {
+        visited[v] = true;
+        System.out.print(v + " ");
+        for (int w : adj[v]) {
+           if (!visited[w]) {
+              dfs(w, visited);
+           }
+        }
+    }
+
     public static void main(String[] args) {
         adjListGraph g = new adjListGraph(5);
         g.addEdge(0, 1);
@@ -95,8 +115,6 @@ public class adjListGraph {
         System.out.println(g);
 
         g.dfs(0);
-
-
 
     }
     
