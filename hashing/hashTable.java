@@ -82,6 +82,41 @@ public class hashTable{
         return null;
     }
 
+    //remove a value from hashtable using a key
+    public String remove(Integer key){
+        if(key == null){
+            throw new IllegalArgumentException("key is null");
+        }
+
+        int bucketIndex = getBucketIndex(key);
+        HashNode head = buckets[bucketIndex];
+        HashNode previous = null;
+        
+        while (head != null) {
+            if (head.key.equals(key)) {
+                break;
+            }
+
+            previous = head;
+            head = head.nextHashNode;
+        }
+
+        if (head == null) {
+            return null;
+        }
+
+        size--;
+        
+        if (previous != null) {
+            previous.nextHashNode = head.nextHashNode;
+        }
+        else{
+            buckets[bucketIndex] = head.nextHashNode;
+        }
+
+        return head.value;
+    } 
+
     public static void main(String[] args) {
 
         hashTable ht = new hashTable(10);
@@ -91,5 +126,7 @@ public class hashTable{
         System.out.println(ht.size);
 
         System.out.println(ht.get(105));
+
+        System.out.println(ht.remove(105));
     }
 }
