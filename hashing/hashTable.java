@@ -35,6 +35,7 @@ public class hashTable{
         return size == 0;
     }
 
+    //put value in hash table
     public void put(Integer key, String value){
         if (key == null || value == null) {
             throw new IllegalArgumentException("key or value not present");
@@ -60,6 +61,27 @@ public class hashTable{
     private int getBucketIndex(int key){
             return key % capacity;
     }
+
+    //get value from hash table
+    public String get(Integer key){
+        if(key == null){
+            throw new IllegalArgumentException("key is null");
+        }
+
+        int bucketIndex = getBucketIndex(key);
+
+        HashNode head = buckets[bucketIndex];
+
+        while (head != null) {
+            if (head.key.equals(key)) {
+                return head.value;
+            }
+            head = head.nextHashNode;
+        }
+
+        return null;
+    }
+
     public static void main(String[] args) {
 
         hashTable ht = new hashTable(10);
@@ -67,5 +89,7 @@ public class hashTable{
         ht.put(105, "saspara");
         ht.put(21, "kumar");
         System.out.println(ht.size);
+
+        System.out.println(ht.get(105));
     }
 }
