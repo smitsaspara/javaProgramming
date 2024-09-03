@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "hashTable",
+            "request": "launch",
+            "mainClass": "hashing.hashTable",
+            "projectName": "JavaProgramming_fc2d4cec"
+        },
+        {
+            "type": "java",
             "name": "binarySearchTree",
             "request": "launch",
             "mainClass": "binaryTree.binarySearchTree",
